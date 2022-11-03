@@ -1,0 +1,41 @@
+* {
+    box-sizing: border-box;
+    /* border: blue solid 1px; */
+}
+
+body {
+    background-color: beige;
+    display: flex;
+    flex-direction: column;
+}
+
+.title {
+    color: black;
+    font-size: 60px;
+    text-align: center;
+}
+
+.middle {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.menu {
+    display: flex;
+    gap: 10px;
+}
+
+.sketch-board {
+    display: flex;
+    /* padding: 40px; */
+}
+
+.frame {
+    width: 600px;
+    height: 600px;
+    background-color: blanchedalmond;
+    display: flex;
+}

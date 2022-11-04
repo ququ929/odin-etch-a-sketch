@@ -9,28 +9,48 @@ body {
     flex-direction: column;
 }
 
+/* top container*/
 .title {
     color: black;
     font-size: 60px;
     text-align: center;
 }
 
+/* middle container*/
 .middle {
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 10px;
+    /* gap: 10px; */
+    flex:1 ;
 }
 
+/* left */
+/* menu container */
 .menu {
+    width: 25%;
     display: flex;
-    gap: 10px;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 5px;
 }
 
+button {
+    width: 150px;
+}
+
+.slider-container {
+    text-align: center;
+}
+
+.slider {
+    width: 150px;
+}
+/* middle */
 .sketch-board {
     display: flex;
-    /* padding: 40px; */
+    justify-content: center;
+    width: 50%;
 }
 
 .frame {
@@ -38,4 +58,14 @@ body {
     height: 600px;
     background-color: blanchedalmond;
     display: flex;
+}
+
+/* right */
+.empty-right {
+    width: 25%;
+}
+
+/* bottom */
+.footer {
+    text-align: center;
 }

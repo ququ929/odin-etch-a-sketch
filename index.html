@@ -10,21 +10,37 @@
 </head>
 
 <body>
+    <!-- top -->
     <div class="title">Etch-A-Sketch</div>
+
+    <!-- middle -->
     <div class="middle">
+
+        <!-- left -->
+        <div class="menu">
+            <button>RESET</button>
+            <button>BLACK</button>
+            <button>RBG</button>
+
+            <div class="slider-container">
+                <p>squares: <span id="square-number">10</span></p>
+                <input type="range" min="1" max="100" value="10" class="slider">
+            </div>
+        </div>
+
+        <!-- middle -->
         <div class="sketch-board">
             <div class="frame"></div>
         </div>
 
-        <div class="menu">
-            <button>RESET</button>
-            <div class="slidercontainer">
-                <input type="range" min="1" max="100" value="10" class="slider">
-                <p>squares: <span id="square-number"></span></p>
-            </div>
-        </div>
+        <!-- right -->
+        <div class="empty-right"></div>
     </div>
 
-    <div class="footer"></div>
+    <!-- bottom -->
+    <div class="footer">
+        <p>Crafted by ququ929</p>
+    </div>
+
 </body>
 </html>

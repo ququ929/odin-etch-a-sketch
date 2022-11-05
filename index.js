@@ -37,11 +37,13 @@ function removeSquares() {
 
 
 // add black color to squares
+function black() {
+    this.classList.add("black-square");
+}
+
 function blackSquare() {
     const allSquare = document.querySelectorAll(".square");
-    allSquare.forEach(square => square.addEventListener("mouseover", function() {
-        square.classList.add("black-square");
-    }))
+    allSquare.forEach(square => square.addEventListener("mouseover", black));
 }
 
 

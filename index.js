@@ -1,6 +1,17 @@
 // HTML nodes
+// square frame
 const frame = document.querySelector(".frame");
 const docFrag = document.createDocumentFragment();
+
+//reset button
+const reset = document.querySelector(".reset");
+
+//slider number show on web
+const squareRow = document.querySelector(".square-row");
+
+//slider
+const squareSlider = document.querySelector(".slider");
+
 
 
 // Create n x n new square divs
@@ -24,5 +35,17 @@ function removeSquares() {
     frame.innerHTML = "";
 }
 
-createSquares(4);
+
+// add black color to squares
+function blackSquare() {
+    const allSquare = document.querySelectorAll(".square");
+    allSquare.forEach(square => square.addEventListener("mouseover", function() {
+        square.classList.add("black-square");
+    }))
+}
+
+
+//main
+createSquares(10);
 // removeSquares();
+blackSquare();

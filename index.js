@@ -7,11 +7,10 @@ const docFrag = document.createDocumentFragment();
 const reset = document.querySelector(".reset");
 
 //slider number show on web
-const squareRow = document.querySelector(".square-row");
+const squareRowValue = document.querySelector(".show-square-row");
 
 //slider
 const squareSlider = document.querySelector(".slider");
-
 
 
 // Create n x n new square divs
@@ -35,7 +34,6 @@ function removeSquares() {
     frame.innerHTML = "";
 }
 
-
 // add black color to squares
 function black() {
     this.classList.add("black-square");
@@ -46,8 +44,19 @@ function blackSquare() {
     allSquare.forEach(square => square.addEventListener("mouseover", black));
 }
 
+// Using slider to change number of square
+function recreateSquare() {
+    let squareNumber = +this.value;
+    removeSquares();
+    createSquares(squareNumber);
+    blackSquare();
+    squareRowValue.textContent = this.value;
+}
 
-//main
-createSquares(10);
-// removeSquares();
+squareSlider.addEventListener("input", recreateSquare);
+
+
+
+//main default page setting
+createSquares(4);
 blackSquare();

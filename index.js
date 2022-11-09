@@ -4,10 +4,13 @@ const frame = document.querySelector(".frame");
 const docFrag = document.createDocumentFragment();
 
 //reset button
-const reset = document.querySelector(".reset");
+const resetButton = document.querySelector("#reset-button");
 
 //randomRBG button
 const randomButton = document.querySelector("#random-button");
+
+//black button
+const blackButton = document.querySelector("#black-button")
 
 //slider number show on web
 const squareRowValue = document.querySelector(".show-square-row");
@@ -44,6 +47,7 @@ function black() {
 
 function blackSquare() {
     const allSquare = document.querySelectorAll(".square");
+    allSquare.forEach(square => square.removeEventListener("mouseover", randomRBG));
     allSquare.forEach(square => square.addEventListener("mouseover", black));
 }
 
@@ -76,12 +80,15 @@ function randomRBG() {
 // remove black background css, change to randomRBG with RBG button
 function randomColorSquare() {
     const allSquare = document.querySelectorAll(".square");
-    allSquare.forEach(square => square.removeEventListener("mouseover", randomRBG));
+    allSquare.forEach(square => square.removeEventListener("mouseover", blackSquare));
     allSquare.forEach(square => square.addEventListener("mouseover", randomRBG));
 }
 
-randomButton.addEventListener("click", randomColorSquare);
 
+// button events
+randomButton.addEventListener("click", randomColorSquare);
+blackButton.addEventListener("click", blackSquare);
+resetButton.addEventListener("click", recreateSquare);
 
 //main default page setting
 createSquares(4);

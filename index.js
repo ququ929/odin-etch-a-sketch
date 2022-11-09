@@ -53,11 +53,12 @@ function blackSquare() {
 
 // Using slider to change number of square
 function recreateSquare() {
-    let squareNumber = +this.value;
+    // if I use this.value, the value is fixed not dynamic
+    let squareNumber = +document.querySelector(".slider").value;
     removeSquares();
     createSquares(squareNumber);
     blackSquare();
-    squareRowValue.textContent = this.value;
+    squareRowValue.textContent = squareNumber;
 }
 
 squareSlider.addEventListener("input", recreateSquare);

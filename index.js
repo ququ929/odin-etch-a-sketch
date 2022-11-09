@@ -18,6 +18,9 @@ const squareRowValue = document.querySelector(".show-square-row");
 //slider
 const squareSlider = document.querySelector(".slider");
 
+// switch to check color mode status
+let whatMode = "black";
+
 
 // Create n x n new square divs
 function createSquares(number) {
@@ -49,6 +52,8 @@ function blackSquare() {
     const allSquare = document.querySelectorAll(".square");
     allSquare.forEach(square => square.removeEventListener("mouseover", randomRBG));
     allSquare.forEach(square => square.addEventListener("mouseover", black));
+    colorMode = "black";
+    console.log(colorMode);
 }
 
 // Using slider to change number of square
@@ -57,8 +62,12 @@ function recreateSquare() {
     let squareNumber = +document.querySelector(".slider").value;
     removeSquares();
     createSquares(squareNumber);
-    blackSquare();
     squareRowValue.textContent = squareNumber;
+
+    if (colorMode === "black") {
+        blackSquare();
+    }
+    else randomColorSquare();
 }
 
 squareSlider.addEventListener("input", recreateSquare);
@@ -83,6 +92,9 @@ function randomColorSquare() {
     const allSquare = document.querySelectorAll(".square");
     allSquare.forEach(square => square.removeEventListener("mouseover", blackSquare));
     allSquare.forEach(square => square.addEventListener("mouseover", randomRBG));
+
+    colorMode = "random";
+    console.log(colorMode);
 }
 
 

@@ -58,10 +58,6 @@ button {
     border: rgba(128, 128, 128, 0.43) solid 1px;
 }
 
-.black-square {
-    background-color: black;
-}
-
 .frame {
     width: 600px;
     height: 600px;

@@ -6,6 +6,9 @@ const docFrag = document.createDocumentFragment();
 //reset button
 const reset = document.querySelector(".reset");
 
+//randomRBG button
+const randomButton = document.querySelector("#random-button");
+
 //slider number show on web
 const squareRowValue = document.querySelector(".show-square-row");
 
@@ -36,7 +39,7 @@ function removeSquares() {
 
 // add black color to squares
 function black() {
-    this.classList.add("black-square");
+    this.style.backgroundColor = "black";
 }
 
 function blackSquare() {
@@ -55,8 +58,34 @@ function recreateSquare() {
 
 squareSlider.addEventListener("input", recreateSquare);
 
+// create random rgb color
+// create random number 0-255
+function random255() {
+    return Math.floor(Math.random() * (255 + 1));
+}
+
+// change background color with random rgb
+function randomRBG() {
+    r = random255();
+    b = random255();
+    g = random255();
+
+    this.style.backgroundColor = `rgb(${r}, ${g}, ${b})`;
+}
+
+// remove black background css, change to randomRBG with RBG button
+function randomColorSquare() {
+    const allSquare = document.querySelectorAll(".square");
+    allSquare.forEach(square => square.removeEventListener("mouseover", randomRBG));
+    allSquare.forEach(square => square.addEventListener("mouseover", randomRBG));
+}
+
+randomButton.addEventListener("click", randomColorSquare);
 
 
 //main default page setting
 createSquares(4);
 blackSquare();
+
+
+// testing code

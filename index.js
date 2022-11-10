@@ -12,6 +12,10 @@ const randomButton = document.querySelector("#random-button");
 //black button
 const blackButton = document.querySelector("#black-button")
 
+//darken button
+const darkenButton = document.querySelector("#darken-button")
+
+
 //slider number show on web
 const squareRowValue = document.querySelector(".show-square-row");
 
@@ -50,7 +54,6 @@ function black() {
 
 function blackSquare() {
     const allSquare = document.querySelectorAll(".square");
-    allSquare.forEach(square => square.removeEventListener("mouseover", randomRBG));
     allSquare.forEach(square => square.addEventListener("mouseover", black));
     colorMode = "black";
     console.log(colorMode);
@@ -67,6 +70,11 @@ function recreateSquare() {
     if (colorMode === "black") {
         blackSquare();
     }
+
+    else if (colorMode === "darken") {
+        darkenSquare();
+    }
+
     else randomColorSquare();
 }
 
@@ -80,9 +88,9 @@ function random255() {
 
 // change background color with random rgb
 function randomRBG() {
-    r = random255();
-    b = random255();
-    g = random255();
+    let r = random255();
+    let b = random255();
+    let g = random255();
 
     this.style.backgroundColor = `rgb(${r}, ${g}, ${b})`;
 }
@@ -90,18 +98,34 @@ function randomRBG() {
 // remove black background css, change to randomRBG with RBG button
 function randomColorSquare() {
     const allSquare = document.querySelectorAll(".square");
-    allSquare.forEach(square => square.removeEventListener("mouseover", blackSquare));
     allSquare.forEach(square => square.addEventListener("mouseover", randomRBG));
 
     colorMode = "random";
     console.log(colorMode);
 }
 
+// darken mode
+// darken
+
+function darken() {
+    this.style.backgroundColor = "rgba(0, 0, 0, 0.3)";
+}
+
+function darkenSquare() {
+    const allSquare = document.querySelectorAll(".square");
+    allSquare.forEach(square => square.addEventListener("mouseover", darken));
+
+    colorMode = "darken";
+    console.log(colorMode);
+}
+
+
 
 // button events
 randomButton.addEventListener("click", randomColorSquare);
 blackButton.addEventListener("click", blackSquare);
 resetButton.addEventListener("click", recreateSquare);
+darkenButton.addEventListener("click", darkenSquare);
 
 //main default page setting
 createSquares(4);

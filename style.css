@@ -61,7 +61,7 @@ button {
 .frame {
     width: 600px;
     height: 600px;
-    background-color: blanchedalmond;
+    background-color: white;
     display: flex;
     flex-wrap: wrap;
 }

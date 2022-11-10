@@ -6,7 +6,7 @@ const docFrag = document.createDocumentFragment();
 //reset button
 const resetButton = document.querySelector("#reset-button");
 
-//randomRBG button
+//randomRGB button
 const randomButton = document.querySelector("#random-button");
 
 //black button
@@ -75,7 +75,7 @@ function black() {
 
 function blackSquare() {
     const allSquare = document.querySelectorAll(".square");
-    allSquare.forEach(square => square.removeEventListener("mouseover", randomRBG));
+    allSquare.forEach(square => square.removeEventListener("mouseover", randomRGB));
     allSquare.forEach(square => square.removeEventListener("mouseover", darken));
     allSquare.forEach(square => square.addEventListener("mouseover", black));
     colorMode = "black";
@@ -89,7 +89,7 @@ function random255() {
 }
 
 // change background color with random rgb
-function randomRBG() {
+function randomRGB() {
     let r = random255();
     let b = random255();
     let g = random255();
@@ -97,12 +97,12 @@ function randomRBG() {
     this.style.backgroundColor = `rgb(${r}, ${g}, ${b})`;
 }
 
-// remove black background css, change to randomRBG with RBG button
+// remove black background css, change to randomRGB with RGB button
 function randomColorSquare() {
     const allSquare = document.querySelectorAll(".square");
     allSquare.forEach(square => square.removeEventListener("mouseover", black));
     allSquare.forEach(square => square.removeEventListener("mouseover", darken));
-    allSquare.forEach(square => square.addEventListener("mouseover", randomRBG));
+    allSquare.forEach(square => square.addEventListener("mouseover", randomRGB));
 
     colorMode = "random";
     console.log(colorMode);
@@ -112,19 +112,36 @@ function randomColorSquare() {
 // darken
 
 function darken() {
-    this.style.backgroundColor = "rgba(0, 0, 0, 0.3)";
+    let alphaValue = 0;
+    let rgbaValue = `rgba(0, 0, 0, ${alphaValue})`;
+    this.style.backgroundColor = rgbaValue;
+
+    const allSquare = document.querySelectorAll(".square");
+    allSquare.forEach(square => square.addEventListener("mouseover", darkenInside));
+
+    function darkenInside() {
+        allSquare.forEach(square => square.removeEventListener("mouseover", darken));
+        
+        if (alphaValue > 1) return;
+  
+        else {
+         alphaValue += 0.1; 
+         rgbaValue = `rgba(22,50,122,${alphaValue}`;
+         this.style.backgroundColor = rgbaValue;
+        }
+    }
 }
+
 
 function darkenSquare() {
     const allSquare = document.querySelectorAll(".square");
     allSquare.forEach(square => square.removeEventListener("mouseover", black));
-    allSquare.forEach(square => square.removeEventListener("mouseover", randomRBG));
+    allSquare.forEach(square => square.removeEventListener("mouseover", randomRGB));
     allSquare.forEach(square => square.addEventListener("mouseover", darken));
 
     colorMode = "darken";
     console.log(colorMode);
 }
-
 
 
 // button events

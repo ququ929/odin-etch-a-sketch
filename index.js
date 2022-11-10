@@ -47,18 +47,6 @@ function removeSquares() {
     frame.innerHTML = "";
 }
 
-// add black color to squares
-function black() {
-    this.style.backgroundColor = "black";
-}
-
-function blackSquare() {
-    const allSquare = document.querySelectorAll(".square");
-    allSquare.forEach(square => square.addEventListener("mouseover", black));
-    colorMode = "black";
-    console.log(colorMode);
-}
-
 // Using slider to change number of square
 function recreateSquare() {
     // if I use this.value, the value is fixed not dynamic
@@ -80,6 +68,20 @@ function recreateSquare() {
 
 squareSlider.addEventListener("input", recreateSquare);
 
+// add black color to squares
+function black() {
+    this.style.backgroundColor = "black";
+}
+
+function blackSquare() {
+    const allSquare = document.querySelectorAll(".square");
+    allSquare.forEach(square => square.removeEventListener("mouseover", randomRBG));
+    allSquare.forEach(square => square.removeEventListener("mouseover", darken));
+    allSquare.forEach(square => square.addEventListener("mouseover", black));
+    colorMode = "black";
+    console.log(colorMode);
+}
+
 // create random rgb color
 // create random number 0-255
 function random255() {
@@ -98,6 +100,8 @@ function randomRBG() {
 // remove black background css, change to randomRBG with RBG button
 function randomColorSquare() {
     const allSquare = document.querySelectorAll(".square");
+    allSquare.forEach(square => square.removeEventListener("mouseover", black));
+    allSquare.forEach(square => square.removeEventListener("mouseover", darken));
     allSquare.forEach(square => square.addEventListener("mouseover", randomRBG));
 
     colorMode = "random";
@@ -113,6 +117,8 @@ function darken() {
 
 function darkenSquare() {
     const allSquare = document.querySelectorAll(".square");
+    allSquare.forEach(square => square.removeEventListener("mouseover", black));
+    allSquare.forEach(square => square.removeEventListener("mouseover", randomRBG));
     allSquare.forEach(square => square.addEventListener("mouseover", darken));
 
     colorMode = "darken";

@@ -15,7 +15,6 @@ const blackButton = document.querySelector("#black-button")
 //darken button
 const darkenButton = document.querySelector("#darken-button")
 
-
 //slider number show on web
 const squareRowValue = document.querySelector(".show-square-row");
 
@@ -67,11 +66,12 @@ function recreateSquare() {
 
 squareSlider.addEventListener("input", recreateSquare);
 
-// add black color to squares
+// black square mode
 function black() {
     this.style.backgroundColor = "black";
 }
 
+// remove other eventlistener when switching mode
 function blackSquare() {
     const allSquare = document.querySelectorAll(".square");
     allSquare.forEach(square => square.removeEventListener("mouseover", randomRGB));
@@ -81,7 +81,7 @@ function blackSquare() {
     console.log(colorMode);
 }
 
-// create random rgb color
+// random rgb mode
 // create random number 0-255
 function random255() {
     return Math.floor(Math.random() * (255 + 1));
@@ -96,7 +96,7 @@ function randomRGB() {
     this.style.backgroundColor = `rgb(${r}, ${g}, ${b})`;
 }
 
-// remove black background css, change to randomRGB with RGB button
+// remove other eventlistener when switching mode
 function randomColorSquare() {
     const allSquare = document.querySelectorAll(".square");
     allSquare.forEach(square => square.removeEventListener("mouseover", black));
@@ -108,9 +108,8 @@ function randomColorSquare() {
 }
 
 // darken mode
-// darken
-
 function darken() {
+    // initialize when first touch
     let alphaValue = 0.1;
     let rgbaValue = `rgba(0, 0, 0, ${alphaValue})`;
     this.style.backgroundColor = rgbaValue;
@@ -119,10 +118,10 @@ function darken() {
     // remove old eventlistener and add a new one every time we touch a square
     // otherwise it will keep reset the value back to 0.1!!!
     // this little problem cost me 2 day to solve Q_Q
-
     this.removeEventListener("mouseover", darken);
     this.addEventListener("mouseover", darken2);
 
+    // 2nd event for darken mode
     function darken2() {
             if (alphaValue < 1) {
             alphaValue += 0.1
@@ -133,8 +132,7 @@ function darken() {
 
 }
 
-
-
+// remove other event when switching to darken mode
 function darkenSquare() {
     const allSquare = document.querySelectorAll(".square");
     allSquare.forEach(square => square.removeEventListener("mouseover", black));
@@ -144,7 +142,6 @@ function darkenSquare() {
     colorMode = "darken";
     console.log(colorMode);
 }
-
 
 // button events
 randomButton.addEventListener("click", randomColorSquare);
@@ -157,4 +154,3 @@ createSquares(4);
 blackSquare();
 
 
-// testing code

@@ -25,7 +25,6 @@ const squareSlider = document.querySelector(".slider");
 // switch to check color mode status
 let whatMode = "black";
 
-
 // Create n x n new square divs
 function createSquares(number) {
     for (let i = 0; i < (number * number); i++) {
@@ -112,25 +111,28 @@ function randomColorSquare() {
 // darken
 
 function darken() {
-    let alphaValue = 0;
+    let alphaValue = 0.1;
     let rgbaValue = `rgba(0, 0, 0, ${alphaValue})`;
     this.style.backgroundColor = rgbaValue;
+    
+    // !!! this is the key!
+    // remove old eventlistener and add a new one every time we touch a square
+    // otherwise it will keep reset the value back to 0.1!!!
+    // this little problem cost me 2 day to solve Q_Q
 
-    const allSquare = document.querySelectorAll(".square");
-    allSquare.forEach(square => square.addEventListener("mouseover", darkenInside));
+    this.removeEventListener("mouseover", darken);
+    this.addEventListener("mouseover", darken2);
 
-    function darkenInside() {
-        allSquare.forEach(square => square.removeEventListener("mouseover", darken));
-        
-        if (alphaValue > 1) return;
-  
-        else {
-         alphaValue += 0.1; 
-         rgbaValue = `rgba(22,50,122,${alphaValue}`;
-         this.style.backgroundColor = rgbaValue;
+    function darken2() {
+            if (alphaValue < 1) {
+            alphaValue += 0.1
+            rgbaValue = `rgba(0, 0, 0, ${alphaValue})`;
+            this.style.backgroundColor = rgbaValue;
         }
     }
+
 }
+
 
 
 function darkenSquare() {
